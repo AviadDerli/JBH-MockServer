@@ -13,6 +13,17 @@ router.get('/', async (req, res) => {
     }
 })
 
+router.get('/categories', async (req, res) => {
+    try {
+        console.log(data.categories);
+        res.send(JSON.stringify(data.categories))
+    }
+    catch (e) { 
+        console.log("***ERROR***\n" + e);
+        res.status(400).send(e)
+    }
+})
+
 router.get('/:id', async (req, res) => {
     try {
         let p = data.products.find(p=>p.id==req.params.id)
@@ -45,15 +56,7 @@ router.post('/', async (req, res) => {
     }
 })
 
-router.get('/categories', async (req, res) => {
-    try {
-        res.send(data.categories)
-    }
-    catch (e) { 
-        console.log("***ERROR***\n" + e);
-        res.status(400).send(e)
-    }
-})
+
 
 router.get('/categories/:category', async (req, res) => {
     try {
