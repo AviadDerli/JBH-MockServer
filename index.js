@@ -10,6 +10,8 @@ app.use(cors());
 
 const productRouter = require("./product.router");
 app.use("/products", productRouter);
+const fruitRouter = require("./fruit.router");
+app.use("/fruits", fruitRouter);
 
 
 app.listen(PORT, () => {
