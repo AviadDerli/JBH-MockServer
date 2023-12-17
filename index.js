@@ -8,10 +8,13 @@ const PORT = process.env.PORT || 2000;
 app.use(express.json());
 app.use(cors());
 
-const productRouter = require("./product.router");
-app.use("/products", productRouter);
-const fruitRouter = require("./fruit.router");
-app.use("/fruits", fruitRouter);
+// const productRouter = require("./product.router");
+// app.use("/products", productRouter);
+
+
+const itemRouter = require("./item.router");
+app.use("/", itemRouter);
+
 
 
 app.listen(PORT, () => {
