@@ -30,8 +30,7 @@ router.post('/login', async (req, res) => {
 })
 router.post('/validate', async (req, res) => {
     try {
-        let {token} = req.body
-        if(!token) throw "error token"
+        if(!req.body.token) throw "error token"
 
         let r = {
             status : true,
