@@ -13,6 +13,7 @@ router.post('/login', async (req, res) => {
         if(!userName || !password) throw "Error inputs"
 
         let r = {
+            status : true,
             user:{
                 id : genId(userName) ,
                 userName,
@@ -24,7 +25,7 @@ router.post('/login', async (req, res) => {
     }
     catch (e) {
         console.log("***ERROR***\n" + e);
-        res.status(400).send({error:e})
+        res.status(400).send({status : false , error:e})
     }
 })
 
