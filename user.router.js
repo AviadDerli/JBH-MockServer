@@ -28,6 +28,27 @@ router.post('/login', async (req, res) => {
         res.status(400).send({status : false , error:e})
     }
 })
+router.post('/validate', async (req, res) => {
+    try {
+        let {token} = req.body
+        if(!token) throw "error token"
+
+        let r = {
+            status : true,
+            user:{
+                id : genId("Anonymous") ,
+                userName:"Anonymous",
+                lastConnect : new Date(),
+            },
+            token : token(),
+        }
+        res.send(r)
+    }
+    catch (e) {
+        console.log("***ERROR***\n" + e);
+        res.status(400).send({status : false , error:e})
+    }
+})
 
 // router.get('/', async (req, res) => {
 //     try {
