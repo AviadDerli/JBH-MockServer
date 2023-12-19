@@ -15,6 +15,9 @@ app.use(cors());
 const itemRouter = require("./item.router");
 app.use("/", itemRouter);
 
+const userRouter = require("./user.router");
+app.use("/", userRouter);
+
 
 
 app.listen(PORT, () => {
