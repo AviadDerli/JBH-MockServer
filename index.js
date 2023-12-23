@@ -15,8 +15,11 @@ app.use(cors());
 const itemRouter = require("./item.router");
 app.use("/", itemRouter);
 
+const authRouter = require("./auth.router");
+app.use("/", authRouter);
+
 const userRouter = require("./user.router");
-app.use("/", userRouter);
+app.use("/user", userRouter);
 
 
 
