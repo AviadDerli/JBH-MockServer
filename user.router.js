@@ -27,7 +27,7 @@ router.get('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     try {
         let i = users.findIndex(p => p.id == req.params.id)
-        res.send(delete data.users[i])
+        res.send(delete users[i])
     }
     catch (e) {
         console.log("***ERROR***\n" + e);
