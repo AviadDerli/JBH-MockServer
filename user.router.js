@@ -41,8 +41,9 @@ router.post('/', async (req, res) => {
         if(!firstName || !lastName || !email || !dateOfBirth) throw "Invalid Input"
 
         let id = Math.max(...users.map(u=>u.id))
-        users.push({id:id+1, firstName, lastName, email, dateOfBirth })
-        res.send({...req.body,createdDate:new Date()})
+        let newUser = {id:id+1, firstName, lastName, email, dateOfBirth }
+        users.push(newUser)
+        res.send({...newUser,createdDate:new Date()})
     }
     catch (e) {
         console.log("***ERROR***\n" + e);
