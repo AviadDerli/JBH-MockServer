@@ -38,11 +38,10 @@ router.delete('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
     try {
         const { firstName, lastName, email, dateOfBirth } = req.body;
-        if(!firstName || !lastName || !email) throw "Invalid Input"
+        if(!firstName || !lastName || !email || !dateOfBirth) throw "Invalid Input"
 
         let id = Math.max(...users.map(u=>u.id))
-        req.body.id = id+1
-        users.push(req.body)
+        users.push({id:id+1, firstName, lastName, email, dateOfBirth })
         res.send({...req.body,createdDate:new Date()})
     }
     catch (e) {
