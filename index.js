@@ -21,6 +21,9 @@ app.use("/", authRouter);
 const userRouter = require("./user.router");
 app.use("/user", userRouter);
 
+const carRouter = require("./car.router");
+app.use("/car", carRouter);
+
 
 
 app.listen(PORT, () => {
