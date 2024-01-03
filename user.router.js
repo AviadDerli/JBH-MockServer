@@ -27,7 +27,7 @@ router.get('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     try {
         let i = users.findIndex(p => p.id == req.params.id)
-        if (i=>0) users = users.filter(u => u.id != req.params.id)
+        if (i => 0) users = users.filter(u => u.id != req.params.id)
         res.send(i >= 0 ? true : false)
     }
     catch (e) {
@@ -72,5 +72,19 @@ router.put('/:id', async (req, res) => {
         res.status(400).send(e)
     }
 })
- 
+
+router.post('/login', async (req, res) => {
+    try {
+        let user = {
+            userName: "Israel Israeli",
+            avatar: "https://openclipart.org/image/800px/322492",
+            token:  "" }
+        res.send(
+        )
+    }
+    catch (e) {
+        console.log("***ERROR***\n" + e);
+        res.status(400).send(e)
+    }
+})
 module.exports = router

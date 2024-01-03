@@ -17,6 +17,7 @@ router.post('/login', async (req, res) => {
             user:{
                 id : genId(userName) ,
                 userName,
+                avatar : "https://openclipart.org/image/800px/322492",
                 lastConnect : new Date(),
             },
             token : token(),
@@ -25,7 +26,7 @@ router.post('/login', async (req, res) => {
     }
     catch (e) {
         console.log("***ERROR***\n" + e);
-        res.status(400).send({status : false , error:e})
+        res.status(401).send({status : false , error:e})
     }
 })
 router.post('/validate', async (req, res) => {
