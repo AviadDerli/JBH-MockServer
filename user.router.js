@@ -16,11 +16,12 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     try {
         let p = users.find(p => p.id == req.params.id)
+        if(!p) throw 'User is not exist'
         res.send(p)
     }
     catch (e) {
         console.log("***ERROR***\n" + e);
-        res.status(400).send(e)
+        res.status(404).send(e)
     }
 })
 
@@ -40,6 +41,9 @@ router.post('/', async (req, res) => {
     try {
         const { firstName, lastName, email, dateOfBirth } = req.body;
         if (!firstName || !lastName || !email || !dateOfBirth) throw "Invalid Input"
+
+        let p = users.find(p => p.email == req.body?.email)
+        if(p) throw 'User is exist'
 
         let id = Math.max(...users.map(u => u.id))
         let newUser = { id: id + 1, firstName, lastName, email, dateOfBirth }
@@ -75,16 +79,19 @@ router.put('/:id', async (req, res) => {
 
 router.post('/login', async (req, res) => {
     try {
+
+        let p = users.find(p => p.email == req.body?.userName)
+        if(!p || req.body?.password != '1234') throw "The username or password is incorrect"
+        
         let user = {
-            userName: "Israel Israeli",
+            userName: req.body.userName,
             avatar: "https://openclipart.org/image/800px/322492",
-            token:  "" }
-        res.send(
-        )
+            token:  Math.random().toString(36).substr(2)+Math.random().toString(36).substr(2) }
+        res.send(user)
     }
     catch (e) {
         console.log("***ERROR***\n" + e);
-        res.status(400).send(e)
+        res.status(401).send(e)
     }
 })
 module.exports = router
